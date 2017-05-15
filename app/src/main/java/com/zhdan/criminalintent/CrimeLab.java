@@ -7,20 +7,28 @@ import java.util.List;
 import java.util.UUID;
 
 class CrimeLab {
+    private Context mAppContext;
     private static CrimeLab sCrimeLab;
     private List<Crime> mCrimes;
 
     private CrimeLab(Context context) {
+        mAppContext = context;
         mCrimes = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            Crime crime = new Crime();
+            crime.setmTitle("Crime #" + i);
+            crime.setmSolved(i % 2 == 0);
+            mCrimes.add(crime);
+        }
     }
 
-    public List<Crime> getCrimes(){
+    public List<Crime> getCrimes() {
         return mCrimes;
     }
 
-    public Crime getCrime(UUID id){
-        for (Crime crime : mCrimes){
-            if (crime.getmId().equals(id)){
+    public Crime getCrime(UUID id) {
+        for (Crime crime : mCrimes) {
+            if (crime.getmId().equals(id)) {
                 return crime;
             }
         }

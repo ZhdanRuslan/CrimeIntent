@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.UUID;
 
 class CrimeLab {
-    private Context mAppContext;
+    
     private static CrimeLab sCrimeLab;
     private List<Crime> mCrimes;
 
     private CrimeLab(Context context) {
-        mAppContext = context;
+
         mCrimes = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             Crime crime = new Crime();

@@ -56,7 +56,7 @@ public class CrimeListFragment extends Fragment {
 
         @Override
         public int getItemCount() {
-            return 0;
+            return mCrimes.size();
         }
     }
 }

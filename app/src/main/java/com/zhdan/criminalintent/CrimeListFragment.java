@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class CrimeListFragment extends Fragment {
     private RecyclerView mCrimeRecyclerView;
 
@@ -26,6 +28,31 @@ public class CrimeListFragment extends Fragment {
         public CrimeHolder(View itemView) {
             super(itemView);
             mTitleTextView = (TextView) itemView;
+        }
+    }
+
+    private class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder>{
+
+        private List<Crime> mCrimes;
+
+
+        public CrimeAdapter(List<Crime> crimes){
+            mCrimes = crimes;
+        }
+
+        @Override
+        public CrimeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            return null;
+        }
+
+        @Override
+        public void onBindViewHolder(CrimeHolder holder, int position) {
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return 0;
         }
     }
 }

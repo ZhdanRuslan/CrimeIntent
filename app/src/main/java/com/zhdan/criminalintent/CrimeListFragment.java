@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class CrimeListFragment extends Fragment {
     private RecyclerView mCrimeRecyclerView;
@@ -17,5 +18,14 @@ public class CrimeListFragment extends Fragment {
         mCrimeRecyclerView = (RecyclerView) view.findViewById(R.id.crime_recycler_view);
         mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return view;
+    }
+
+    private class CrimeHolder extends RecyclerView.ViewHolder{
+        public TextView mTitleTextView;
+
+        public CrimeHolder(View itemView) {
+            super(itemView);
+            mTitleTextView = (TextView) itemView;
+        }
     }
 }

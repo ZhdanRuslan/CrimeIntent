@@ -2,6 +2,7 @@ package com.zhdan.criminalintent;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.LayoutInflaterCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,7 +23,7 @@ public class CrimeListFragment extends Fragment {
         return view;
     }
 
-    private class CrimeHolder extends RecyclerView.ViewHolder{
+    private class CrimeHolder extends RecyclerView.ViewHolder {
         public TextView mTitleTextView;
 
         public CrimeHolder(View itemView) {
@@ -31,18 +32,20 @@ public class CrimeListFragment extends Fragment {
         }
     }
 
-    private class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder>{
+    private class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder> {
 
         private List<Crime> mCrimes;
 
 
-        public CrimeAdapter(List<Crime> crimes){
+        public CrimeAdapter(List<Crime> crimes) {
             mCrimes = crimes;
         }
 
         @Override
         public CrimeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return null;
+            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
+            View view = layoutInflater.inflate(android.R.layout.simple_list_item_1, parent, false);
+            return new CrimeHolder(view);
         }
 
         @Override

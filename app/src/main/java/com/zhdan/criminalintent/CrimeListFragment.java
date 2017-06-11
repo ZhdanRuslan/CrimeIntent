@@ -65,10 +65,14 @@ public class CrimeListFragment extends Fragment {
         CrimeLab crimeLab = CrimeLab.get(getActivity());
         List<Crime> crimes = crimeLab.getCrimes();
 
-        
-
-        mAdapter = new CrimeAdapter(crimes);
-        mCrimeRecyclerView.setAdapter(mAdapter);
+        if (mAdapter == null){
+            mAdapter = new CrimeAdapter(crimes);
+            mCrimeRecyclerView.setAdapter(mAdapter);
+        } else {
+            mAdapter.notifyDataSetChanged();
+        }
+//        mAdapter = new CrimeAdapter(crimes);
+//        mCrimeRecyclerView.setAdapter(mAdapter);
     }
 
     private class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder> {

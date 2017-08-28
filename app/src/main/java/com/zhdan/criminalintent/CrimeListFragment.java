@@ -71,8 +71,6 @@ public class CrimeListFragment extends Fragment {
         } else {
             mAdapter.notifyDataSetChanged();
         }
-//        mAdapter = new CrimeAdapter(crimes);
-//        mCrimeRecyclerView.setAdapter(mAdapter);
     }
 
     private class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder> {

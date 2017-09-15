@@ -41,10 +41,18 @@ public class CrimePagerActivity extends FragmentActivity {
                 Crime crime = mCrimes.get(position);
                 return CrimeFragment.newInstance(crime.getmId());
             }
+
             @Override
             public int getCount() {
                 return mCrimes.size();
             }
         });
+
+        for (int i = 0; i < mCrimes.size(); i++) {
+            if (mCrimes.get(i).getmId().equals(crimeID)) {
+                mViewPager.setCurrentItem(i);
+                break;
+            }
+        }
     }
 }

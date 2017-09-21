@@ -15,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -33,6 +34,9 @@ public class CrimeFragment extends Fragment {
     private static final int REQUEST_DATE = 0;
 
     private static final int REQUEST_TIME = 1;
+
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+    private SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 
     public static CrimeFragment newInstance(UUID crimeId) {
         Bundle args = new Bundle();
@@ -59,8 +63,8 @@ public class CrimeFragment extends Fragment {
     }
 
     private void updateDateAndTime() {
-        mDateButton.setText(mCrime.getDate().toString());
-        mTimeButton.setText(mCrime.getDate().toString());
+        mDateButton.setText(dateFormat.format(mCrime.getDate()));
+        mTimeButton.setText(timeFormat.format(mCrime.getDate()));
     }
 
     @Override
@@ -75,7 +79,7 @@ public class CrimeFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragmet_crime, container, false);
 
         mTItleField = (EditText) v.findViewById(R.id.crime_title);
-        mTItleField.setText(mCrime.getmTitle());
+        mTItleField.setText(mCrime.getTitle());
         mTItleField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -84,7 +88,7 @@ public class CrimeFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mCrime.setmTitle(s.toString());
+                mCrime.setTitle(s.toString());
             }
 
             @Override
@@ -94,7 +98,8 @@ public class CrimeFragment extends Fragment {
         });
 
         mDateButton = (Button) v.findViewById(R.id.crime_date);
-        mDateButton.setText(mCrime.getDate().toString());
+
+        mDateButton.setText(dateFormat.format(mCrime.getDate()));
 
         mDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +113,8 @@ public class CrimeFragment extends Fragment {
 
 
         mTimeButton = (Button) v.findViewById(R.id.crime_time);
-        mTimeButton.setText(mCrime.getDate().toString());
+
+        mTimeButton.setText(timeFormat.format(mCrime.getDate()));
 
         mTimeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,11 +127,11 @@ public class CrimeFragment extends Fragment {
         });
 
         mSolvedCheckBox = (CheckBox) v.findViewById(R.id.crime_solved);
-        mSolvedCheckBox.setChecked(mCrime.ismSolved());
+        mSolvedCheckBox.setChecked(mCrime.isSolved());
         mSolvedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mCrime.setmSolved(isChecked);
+                mCrime.setSolved(isChecked);
             }
         });
         return v;

@@ -1,6 +1,8 @@
 package com.zhdan.criminalintent;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 import java.util.UUID;
 
 public class Crime {
@@ -14,15 +16,15 @@ public class Crime {
         mDate = new Date();
     }
 
-    public UUID getmId() {
+    public UUID getId() {
         return mId;
     }
 
-    public String getmTitle() {
+    public String getTitle() {
         return mTitle;
     }
 
-    public void setmTitle(String mTitle) {
+    public void setTitle(String mTitle) {
         this.mTitle = mTitle;
     }
 
@@ -34,11 +36,11 @@ public class Crime {
         this.mDate = mDate;
     }
 
-    public boolean ismSolved() {
+    public boolean isSolved() {
         return mSolved;
     }
 
-    public void setmSolved(boolean mSolved) {
+    public void setSolved(boolean mSolved) {
         this.mSolved = mSolved;
     }
 }

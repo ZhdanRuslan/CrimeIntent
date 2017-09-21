@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class CrimeListFragment extends Fragment {
@@ -34,14 +35,15 @@ public class CrimeListFragment extends Fragment {
 
         public void bindCrime(Crime crime) {
             mCrime = crime;
-            mTitleTextView.setText(mCrime.getmTitle());
-            mDateTextView.setText(mCrime.getDate().toString());
-            mSolvedCheckBox.setChecked(mCrime.ismSolved());
+            mTitleTextView.setText(mCrime.getTitle());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+            mDateTextView.setText(dateFormat.format(mCrime.getDate()));
+            mSolvedCheckBox.setChecked(mCrime.isSolved());
         }
 
         @Override
         public void onClick(View v) {
-            Intent intent = CrimePagerActivity.newIntent(getActivity(), mCrime.getmId());
+            Intent intent = CrimePagerActivity.newIntent(getActivity(), mCrime.getId());
             startActivity(intent);
         }
     }
@@ -70,7 +72,6 @@ public class CrimeListFragment extends Fragment {
             mCrimeRecyclerView.setAdapter(mAdapter);
         } else {
             mAdapter.notifyDataSetChanged();
-//            mAdapter.notifyItemChanged(mAdapter.getItemCount());
         }
     }
 

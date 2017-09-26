@@ -29,6 +29,7 @@ public class CrimeListFragment extends Fragment {
         private TextView mDateTextView;
         private CheckBox mSolvedCheckBox;
         private Crime mCrime;
+        private boolean mSubtitleVisible;
 
         public CrimeHolder(View itemView) {
             super(itemView);

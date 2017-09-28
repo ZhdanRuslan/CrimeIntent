@@ -17,12 +17,14 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.UUID;
 
 public class CrimeListFragment extends Fragment {
     private RecyclerView mCrimeRecyclerView;
     private CrimeAdapter mAdapter;
     private boolean mSubtitleVisible;
     private static final String SAVED_SUBTITLE_VISIBLE = "subtitle";
+    private static final String ARG_CRIME_ID = "crime_id";
 
     private class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -149,6 +151,12 @@ public class CrimeListFragment extends Fragment {
                 Intent intent = CrimePagerActivity.newIntent(getActivity(), crime.getId());
                 startActivity(intent);
                 return true;
+
+            case R.id.menu_item_delete_crime:
+                CrimeLab.get(getActivity()).getCrimes().remove(0);
+                updateUI();
+                return true;
+
             case R.id.menu_item_show_subtitle:
                 mSubtitleVisible = !mSubtitleVisible;
                 getActivity().invalidateOptionsMenu();

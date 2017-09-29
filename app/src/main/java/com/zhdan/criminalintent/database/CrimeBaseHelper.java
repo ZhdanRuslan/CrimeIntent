@@ -3,6 +3,7 @@ package com.zhdan.criminalintent.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import static com.zhdan.criminalintent.database.CrimeDbSchema.CrimeTable.*;
 
 public class CrimeBaseHelper extends SQLiteOpenHelper {
 
@@ -16,7 +17,14 @@ public class CrimeBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        db.execSQL("create table " + NAME + "(" +
+                " _id integer primary key autoincrement, " +
+                Cols.UUID + ", " +
+                Cols.TITLE + ", " +
+                Cols.DATE + ", " +
+                Cols.SOLVED +
+                ")"
+        );
     }
 
     @Override

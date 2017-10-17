@@ -1,9 +1,11 @@
 package com.zhdan.criminalintent;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.zhdan.criminalintent.database.CrimeBaseHelper;
+import com.zhdan.criminalintent.database.CrimeDbSchema.CrimeTable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,5 +44,14 @@ class CrimeLab {
 
     public void deleteCrime(Crime c) {
 
+    }
+
+    private static ContentValues getContentValues(Crime crime) {
+        ContentValues values = new ContentValues();
+        values.put(CrimeTable.Cols.UUID, crime.getId().toString());
+        values.put(CrimeTable.Cols.TITLE, crime.getTitle());
+        values.put(CrimeTable.Cols.DATE, crime.getDate().getTime());
+        values.put(CrimeTable.Cols.SOLVED, crime.isSolved() ? 1 : 0);
+        return values;
     }
 }

@@ -62,6 +62,7 @@ public class CrimeFragment extends Fragment {
         }
     }
 
+
     private void updateDateAndTime() {
         mDateButton.setText(dateFormat.format(mCrime.getDate()));
         mTimeButton.setText(timeFormat.format(mCrime.getDate()));
@@ -72,6 +73,12 @@ public class CrimeFragment extends Fragment {
         super.onCreate(savedInstanceState);
         UUID crimeID = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
         mCrime = CrimeLab.get(getActivity()).getCrime(crimeID);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        CrimeLab.get(getActivity()).updateCrime(mCrime);
     }
 
     @Override

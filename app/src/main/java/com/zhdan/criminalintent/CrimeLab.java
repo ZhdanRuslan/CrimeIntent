@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.zhdan.criminalintent.database.CrimeBaseHelper;
+import com.zhdan.criminalintent.database.CrimeCursorWrapper;
 import com.zhdan.criminalintent.database.CrimeDbSchema.CrimeTable;
 
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ class CrimeLab {
         return sCrimeLab;
     }
 
-    public Cursor queryCrimes(String whereClause, String[] whereArgs) {
+    public CrimeCursorWrapper queryCrimes(String whereClause, String[] whereArgs) {
         Cursor cursor = mDatabase.query(
                 CrimeTable.NAME,
                 null, //get all columns
@@ -49,7 +50,7 @@ class CrimeLab {
                 null, //having
                 null //order by
         );
-        return cursor;
+        return new CrimeCursorWrapper(cursor);
     }
 
     public void addCrime(Crime c) {

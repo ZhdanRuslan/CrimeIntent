@@ -43,7 +43,19 @@ class CrimeLab {
     }
 
     public Crime getCrime(UUID id) {
-        return null;
+        CrimeCursorWrapper cursor = queryCrimes(
+                CrimeTable.Cols.UUID + " = ?",
+                new String[]{id.toString()}
+        );
+        try {
+            if (cursor.getCount() == 0) {
+                return null;
+            }
+            cursor.moveToFirst();
+            return cursor.getCrime();
+        } finally {
+            cursor.close();
+        }
     }
 
     public static CrimeLab get(Context context) {

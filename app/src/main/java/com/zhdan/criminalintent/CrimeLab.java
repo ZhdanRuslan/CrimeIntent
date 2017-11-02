@@ -26,7 +26,20 @@ class CrimeLab {
     }
 
     public List<Crime> getCrimes() {
-        return new ArrayList<>();
+
+        List<Crime> crimes = new ArrayList<>();
+
+        CrimeCursorWrapper cursor = queryCrimes(null, null);
+
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                crimes.add(cursor.getCrime());
+            }
+        } finally {
+            cursor.close();
+        }
+        return crimes;
     }
 
     public Crime getCrime(UUID id) {

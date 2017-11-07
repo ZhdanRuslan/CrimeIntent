@@ -17,7 +17,6 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.UUID;
 
 public class CrimeListFragment extends Fragment {
     private RecyclerView mCrimeRecyclerView;
@@ -91,6 +90,7 @@ public class CrimeListFragment extends Fragment {
             mAdapter = new CrimeAdapter(crimes);
             mCrimeRecyclerView.setAdapter(mAdapter);
         } else {
+            mAdapter.setCrimes(crimes);
             mAdapter.notifyDataSetChanged();
         }
         updateSubtitle();
@@ -120,6 +120,10 @@ public class CrimeListFragment extends Fragment {
         @Override
         public int getItemCount() {
             return mCrimes.size();
+        }
+
+        public void setCrimes(List<Crime> crimes) {
+            mCrimes = crimes;
         }
     }
 

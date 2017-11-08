@@ -32,7 +32,6 @@ public class CrimeFragment extends Fragment {
     private static final String DIALOG_DATE = "DialogDate";
     private static final String DIALOG_TIME = "DialogTime";
     private static final int REQUEST_DATE = 0;
-
     private static final int REQUEST_TIME = 1;
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
@@ -62,6 +61,15 @@ public class CrimeFragment extends Fragment {
         }
     }
 
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        if (item.getItemId() == R.id.menu_item_delete_crime) {
+//            CrimeLab.get(getActivity()).deleteCrime(mCrime);
+//            getActivity().finish();
+//            return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     private void updateDateAndTime() {
         mDateButton.setText(dateFormat.format(mCrime.getDate()));
@@ -105,9 +113,7 @@ public class CrimeFragment extends Fragment {
         });
 
         mDateButton = (Button) v.findViewById(R.id.crime_date);
-
         mDateButton.setText(dateFormat.format(mCrime.getDate()));
-
         mDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,9 +126,7 @@ public class CrimeFragment extends Fragment {
 
 
         mTimeButton = (Button) v.findViewById(R.id.crime_time);
-
         mTimeButton.setText(timeFormat.format(mCrime.getDate()));
-
         mTimeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

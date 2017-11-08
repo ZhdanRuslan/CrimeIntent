@@ -26,15 +26,14 @@ class CrimeLab {
     }
 
     public List<Crime> getCrimes() {
-
         List<Crime> crimes = new ArrayList<>();
-
         CrimeCursorWrapper cursor = queryCrimes(null, null);
 
         try {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
                 crimes.add(cursor.getCrime());
+                cursor.moveToNext();
             }
         } finally {
             cursor.close();
@@ -78,9 +77,14 @@ class CrimeLab {
         return new CrimeCursorWrapper(cursor);
     }
 
-    public void addCrime(Crime c) {
-        ContentValues values = getContentValues(c);
+    public void addCrime(Crime crime) {
+        ContentValues values = getContentValues(crime);
         mDatabase.insert(CrimeTable.NAME, null, values);
+    }
+
+    public void deleteCrime(Crime crime) {
+        mDatabase.delete(CrimeTable.NAME,
+                CrimeTable.Cols.UUID + " = ?", new String[]{crime.getId().toString()});
     }
 
     public void updateCrime(Crime crime) {
@@ -89,10 +93,6 @@ class CrimeLab {
         mDatabase.update(CrimeTable.NAME, values,
                 CrimeTable.Cols.UUID + " = ?",
                 new String[]{uuidString});
-    }
-
-    public void deleteCrime(Crime c) {
-
     }
 
     private static ContentValues getContentValues(Crime crime) {

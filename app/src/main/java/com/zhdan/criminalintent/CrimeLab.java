@@ -16,7 +16,6 @@ import java.util.UUID;
 class CrimeLab {
 
     private static CrimeLab sCrimeLab;
-
     private Context mContext;
     private SQLiteDatabase mDatabase;
 
@@ -25,20 +24,11 @@ class CrimeLab {
         mDatabase = new CrimeBaseHelper(mContext).getWritableDatabase();
     }
 
-    public List<Crime> getCrimes() {
-        List<Crime> crimes = new ArrayList<>();
-        CrimeCursorWrapper cursor = queryCrimes(null, null);
-
-        try {
-            cursor.moveToFirst();
-            while (!cursor.isAfterLast()) {
-                crimes.add(cursor.getCrime());
-                cursor.moveToNext();
-            }
-        } finally {
-            cursor.close();
+    public static CrimeLab get(Context context) {
+        if (sCrimeLab == null) {
+            sCrimeLab = new CrimeLab(context);
         }
-        return crimes;
+        return sCrimeLab;
     }
 
     public Crime getCrime(UUID id) {
@@ -57,24 +47,19 @@ class CrimeLab {
         }
     }
 
-    public static CrimeLab get(Context context) {
-        if (sCrimeLab == null) {
-            sCrimeLab = new CrimeLab(context);
+    public List<Crime> getCrimes() {
+        List<Crime> crimes = new ArrayList<>();
+        CrimeCursorWrapper cursor = queryCrimes(null, null);
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                crimes.add(cursor.getCrime());
+                cursor.moveToNext();
+            }
+        } finally {
+            cursor.close();
         }
-        return sCrimeLab;
-    }
-
-    public CrimeCursorWrapper queryCrimes(String whereClause, String[] whereArgs) {
-        Cursor cursor = mDatabase.query(
-                CrimeTable.NAME,
-                null, //get all columns
-                whereClause,
-                whereArgs,
-                null, //group by
-                null, //having
-                null //order by
-        );
-        return new CrimeCursorWrapper(cursor);
+        return crimes;
     }
 
     public void addCrime(Crime crime) {
@@ -93,6 +78,19 @@ class CrimeLab {
         mDatabase.update(CrimeTable.NAME, values,
                 CrimeTable.Cols.UUID + " = ?",
                 new String[]{uuidString});
+    }
+
+    public CrimeCursorWrapper queryCrimes(String whereClause, String[] whereArgs) {
+        Cursor cursor = mDatabase.query(
+                CrimeTable.NAME,
+                null, //get all columns
+                whereClause,
+                whereArgs,
+                null, //group by
+                null, //having
+                null //order by
+        );
+        return new CrimeCursorWrapper(cursor);
     }
 
     private static ContentValues getContentValues(Crime crime) {

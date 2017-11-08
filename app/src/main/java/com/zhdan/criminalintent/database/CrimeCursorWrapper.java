@@ -26,13 +26,13 @@ public class CrimeCursorWrapper extends CursorWrapper {
      */
     public Crime getCrime() {
         String uuidString = getString(getColumnIndex(CrimeTable.Cols.UUID));
-        Log.e("GET", "getStr = " + uuidString);
+        Log.i("GET", "getStr = " + uuidString);
         String title = getString(getColumnIndex(CrimeTable.Cols.TITLE));
-        Log.e("GET", "getTitle = " + title);
+        Log.i("GET", "getTitle = " + title);
         long date = getLong(getColumnIndex(CrimeTable.Cols.DATE));
-        Log.e("GET", "getDate = " + date);
+        Log.i("GET", "getDate = " + date);
         int isSolved = getInt(getColumnIndex(CrimeTable.Cols.SOLVED));
-        Log.e("GET", "getSolved = " + isSolved);
+        Log.i("GET", "getSolved = " + isSolved);
 
         Crime crime = new Crime(UUID.fromString(uuidString));
         crime.setTitle(title);

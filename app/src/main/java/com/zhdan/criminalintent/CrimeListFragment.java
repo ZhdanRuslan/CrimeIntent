@@ -63,8 +63,7 @@ public class CrimeListFragment extends Fragment {
         mCrimeRecyclerView = (RecyclerView) view.findViewById(R.id.crime_recycler_view);
         mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         if (savedInstanceState != null) {
-            mSubtitleVisible = savedInstanceState.getBoolean
-                    (SAVED_SUBTITLE_VISIBLE);
+            mSubtitleVisible = savedInstanceState.getBoolean(SAVED_SUBTITLE_VISIBLE);
         }
         updateUI();
         return view;
@@ -157,7 +156,7 @@ public class CrimeListFragment extends Fragment {
                 return true;
 
             case R.id.menu_item_delete_crime:
-                CrimeLab.get(getActivity()).getCrimes().remove(0);
+                CrimeLab.get(getActivity()).deleteCrime(CrimeLab.get(getActivity()).getCrimes().get(0));
                 updateUI();
                 return true;
 

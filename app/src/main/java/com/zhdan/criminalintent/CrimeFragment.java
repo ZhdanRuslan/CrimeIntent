@@ -19,7 +19,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
-
 public class CrimeFragment extends Fragment {
 
     private Crime mCrime;
@@ -40,7 +39,6 @@ public class CrimeFragment extends Fragment {
     public static CrimeFragment newInstance(UUID crimeId) {
         Bundle args = new Bundle();
         args.putSerializable(ARG_CRIME_ID, crimeId);
-
         CrimeFragment fragment = new CrimeFragment();
         fragment.setArguments(args);
         return fragment;
@@ -61,32 +59,11 @@ public class CrimeFragment extends Fragment {
         }
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        if (item.getItemId() == R.id.menu_item_delete_crime) {
-//            CrimeLab.get(getActivity()).deleteCrime(mCrime);
-//            getActivity().finish();
-//            return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
-
-    private void updateDateAndTime() {
-        mDateButton.setText(dateFormat.format(mCrime.getDate()));
-        mTimeButton.setText(timeFormat.format(mCrime.getDate()));
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         UUID crimeID = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
         mCrime = CrimeLab.get(getActivity()).getCrime(crimeID);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        CrimeLab.get(getActivity()).updateCrime(mCrime);
     }
 
     @Override
@@ -146,5 +123,16 @@ public class CrimeFragment extends Fragment {
             }
         });
         return v;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        CrimeLab.get(getActivity()).updateCrime(mCrime);
+    }
+
+    private void updateDateAndTime() {
+        mDateButton.setText(dateFormat.format(mCrime.getDate()));
+        mTimeButton.setText(timeFormat.format(mCrime.getDate()));
     }
 }

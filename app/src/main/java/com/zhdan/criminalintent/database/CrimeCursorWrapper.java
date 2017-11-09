@@ -34,7 +34,7 @@ public class CrimeCursorWrapper extends CursorWrapper {
         int isSolved = getInt(getColumnIndex(CrimeTable.Cols.SOLVED));
         Log.i("GET", "getSolved = " + isSolved);
         String suspect = getString(getColumnIndex(CrimeTable.Cols.SUSPECT));
-        Log.i("GET", "getStr = " + uuidString);
+        Log.i("GET", "getSuspect = " + suspect);
 
         Crime crime = new Crime(UUID.fromString(uuidString));
         crime.setTitle(title);

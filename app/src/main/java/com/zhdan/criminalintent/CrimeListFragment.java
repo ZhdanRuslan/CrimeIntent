@@ -15,15 +15,15 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class CrimeListFragment extends Fragment {
+
+    private static final String SAVED_SUBTITLE_VISIBLE = "subtitle";
+
     private RecyclerView mCrimeRecyclerView;
     private CrimeAdapter mAdapter;
     private boolean mSubtitleVisible;
-    private static final String SAVED_SUBTITLE_VISIBLE = "subtitle";
-    private static final String ARG_CRIME_ID = "crime_id";
 
     private class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -31,8 +31,6 @@ public class CrimeListFragment extends Fragment {
         private TextView mDateTextView;
         private CheckBox mSolvedCheckBox;
         private Crime mCrime;
-        private boolean mSubtitleVisible;
-
 
         public CrimeHolder(View itemView) {
             super(itemView);
@@ -44,10 +42,10 @@ public class CrimeListFragment extends Fragment {
 
         public void bindCrime(Crime crime) {
             mCrime = crime;
-            mTitleTextView.setText(mCrime.getTitle());
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-            mDateTextView.setText(dateFormat.format(mCrime.getDate()));
-            mSolvedCheckBox.setChecked(mCrime.isSolved());
+
+            mTitleTextView.setText(crime.getTitle());
+            mSolvedCheckBox.setChecked(crime.isSolved());
+            mDateTextView.setText(crime.getDate().toString());
         }
 
         @Override

@@ -19,7 +19,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
-
 public class CrimeFragment extends Fragment {
 
     private Crime mCrime;
@@ -32,7 +31,6 @@ public class CrimeFragment extends Fragment {
     private static final String DIALOG_DATE = "DialogDate";
     private static final String DIALOG_TIME = "DialogTime";
     private static final int REQUEST_DATE = 0;
-
     private static final int REQUEST_TIME = 1;
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
@@ -62,7 +60,6 @@ public class CrimeFragment extends Fragment {
         }
     }
 
-
     private void updateDateAndTime() {
         mDateButton.setText(dateFormat.format(mCrime.getDate()));
         mTimeButton.setText(timeFormat.format(mCrime.getDate()));
@@ -87,6 +84,7 @@ public class CrimeFragment extends Fragment {
 
         mTItleField = (EditText) v.findViewById(R.id.crime_title);
         mTItleField.setText(mCrime.getTitle());
+
         mTItleField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -105,7 +103,6 @@ public class CrimeFragment extends Fragment {
         });
 
         mDateButton = (Button) v.findViewById(R.id.crime_date);
-
         mDateButton.setText(dateFormat.format(mCrime.getDate()));
 
         mDateButton.setOnClickListener(new View.OnClickListener() {

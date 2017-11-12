@@ -58,14 +58,6 @@ public class CrimeFragment extends Fragment {
         }
     }
 
-<<<<<<< HEAD
-    private void updateDateAndTime() {
-        mDateButton.setText(dateFormat.format(mCrime.getDate()));
-        mTimeButton.setText(timeFormat.format(mCrime.getDate()));
-    }
-
-=======
->>>>>>> 34a4bf31a13a9c1a77e92947f8d5a61f97462c69
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,12 +91,7 @@ public class CrimeFragment extends Fragment {
         });
 
         mDateButton = (Button) v.findViewById(R.id.crime_date);
-<<<<<<< HEAD
-        mDateButton.setText(dateFormat.format(mCrime.getDate()));
-
-=======
         mDateButton.setText(mCrime.getDate().toString());
->>>>>>> 34a4bf31a13a9c1a77e92947f8d5a61f97462c69
         mDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

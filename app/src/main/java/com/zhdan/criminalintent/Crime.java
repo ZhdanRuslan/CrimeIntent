@@ -47,7 +47,7 @@ public class Crime {
         this.mSolved = mSolved;
     }
 
-    public String getmSuspect() {
+    public String getSuspect() {
         return mSuspect;
     }
 

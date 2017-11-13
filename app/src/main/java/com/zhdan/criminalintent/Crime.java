@@ -51,7 +51,7 @@ public class Crime {
         return mSuspect;
     }
 
-    public void setmSuspect(String suspect) {
+    public void setSuspect(String suspect) {
         mSuspect = suspect;
     }
 }

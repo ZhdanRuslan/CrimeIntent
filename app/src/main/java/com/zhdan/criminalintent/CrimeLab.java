@@ -20,6 +20,7 @@ class CrimeLab {
     private static CrimeLab sCrimeLab;
     private Context mContext;
     private SQLiteDatabase mDatabase;
+    private File mPhotoFile;
 
     private CrimeLab(Context context) {
         mContext = context.getApplicationContext();
@@ -50,8 +51,7 @@ class CrimeLab {
     }
 
     public File getPhotoFile(Crime crime) {
-        File externalFilesDir = mContext
-                .getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File externalFilesDir = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         if (externalFilesDir == null) {
             return null;
         }

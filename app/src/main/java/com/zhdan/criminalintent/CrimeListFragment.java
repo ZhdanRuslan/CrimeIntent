@@ -1,5 +1,6 @@
 package com.zhdan.criminalintent;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -24,6 +25,7 @@ public class CrimeListFragment extends Fragment {
     private RecyclerView mCrimeRecyclerView;
     private CrimeAdapter mAdapter;
     private boolean mSubtitleVisible;
+    private Callbacks mCallbacks;
 
     private class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -88,6 +90,12 @@ public class CrimeListFragment extends Fragment {
 
     public interface Callbacks {
         void onCrimeSelected(Crime crime);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mCallbacks = (Callbacks) activity;
     }
 
     @Override

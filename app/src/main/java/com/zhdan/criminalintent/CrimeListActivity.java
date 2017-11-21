@@ -2,7 +2,7 @@ package com.zhdan.criminalintent;
 
 import android.support.v4.app.Fragment;
 
-public class CrimeListActivity extends SingleFragmentActivity {
+public class CrimeListActivity extends SingleFragmentActivity implements CrimeListFragment.Callbacks {
 
     @Override
     protected int getLayoutResId() {
@@ -12,5 +12,10 @@ public class CrimeListActivity extends SingleFragmentActivity {
     @Override
     protected Fragment createFragment() {
         return new CrimeListFragment();
+    }
+
+    @Override
+    public void onCrimeSelected(Crime crime) {
+        
     }
 }

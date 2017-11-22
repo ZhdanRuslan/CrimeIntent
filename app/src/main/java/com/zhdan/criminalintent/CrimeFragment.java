@@ -53,6 +53,10 @@ public class CrimeFragment extends Fragment {
     private static final int REQUEST_CONTACT = 2;
     private static final int REQUEST_PHOTO= 3;
 
+    public interface Callbacks {
+        void onCrimeUpdated(Crime crime);
+    }
+
     public static CrimeFragment newInstance(UUID crimeId) {
         Bundle args = new Bundle();
         args.putSerializable(ARG_CRIME_ID, crimeId);

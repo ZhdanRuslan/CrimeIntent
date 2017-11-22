@@ -30,8 +30,6 @@ import java.io.File;
 import java.util.Date;
 import java.util.UUID;
 
-import static android.bluetooth.BluetoothClass.Service.CAPTURE;
-
 public class CrimeFragment extends Fragment {
 
     private Crime mCrime;
@@ -52,7 +50,7 @@ public class CrimeFragment extends Fragment {
     private static final int REQUEST_DATE = 0;
     private static final int REQUEST_TIME = 1;
     private static final int REQUEST_CONTACT = 2;
-    private static final int REQUEST_PHOTO= 3;
+    private static final int REQUEST_PHOTO = 3;
 
     public interface Callbacks {
         void onCrimeUpdated(Crime crime);
@@ -100,7 +98,7 @@ public class CrimeFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        mCallbacks = (Callbacks)activity;
+        mCallbacks = (Callbacks) activity;
     }
 
     @Override
@@ -228,6 +226,12 @@ public class CrimeFragment extends Fragment {
     public void onPause() {
         super.onPause();
         CrimeLab.get(getActivity()).updateCrime(mCrime);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mCallbacks = null;
     }
 
     private void updateDateAndTime() {

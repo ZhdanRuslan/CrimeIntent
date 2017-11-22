@@ -239,6 +239,11 @@ public class CrimeFragment extends Fragment {
         mTimeButton.setText(mCrime.getDate().toString());
     }
 
+    private void updateCrime() {
+        CrimeLab.get(getActivity()).updateCrime(mCrime);
+        mCallbacks.onCrimeUpdated(mCrime);
+    }
+
     private String getCrimeReport() {
         String solvedString = null;
         if (mCrime.isSolved()) {

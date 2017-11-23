@@ -35,7 +35,6 @@ public class CrimeFragment extends Fragment {
     private Crime mCrime;
     private EditText mTItleField;
     private Button mDateButton;
-    private Button mTimeButton;
     private CheckBox mSolvedCheckBox;
     private Button mReportButton;
     private Button mSuspectButton;
@@ -46,11 +45,9 @@ public class CrimeFragment extends Fragment {
 
     private static final String ARG_CRIME_ID = "crime_id";
     private static final String DIALOG_DATE = "DialogDate";
-    private static final String DIALOG_TIME = "DialogTime";
     private static final int REQUEST_DATE = 0;
-    private static final int REQUEST_TIME = 1;
-    private static final int REQUEST_CONTACT = 2;
-    private static final int REQUEST_PHOTO = 3;
+    private static final int REQUEST_CONTACT = 1;
+    private static final int REQUEST_PHOTO = 2;
 
     public interface Callbacks {
         void onCrimeUpdated(Crime crime);
@@ -68,7 +65,7 @@ public class CrimeFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != Activity.RESULT_OK)
             return;
-        if (requestCode == REQUEST_DATE || requestCode == REQUEST_TIME) {
+        if (requestCode == REQUEST_DATE) {
             Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
             mCrime.setDate(date);
             updateCrime();
@@ -150,18 +147,6 @@ public class CrimeFragment extends Fragment {
             }
         });
 
-        mTimeButton = (Button) v.findViewById(R.id.crime_time);
-        mTimeButton.setText(mCrime.getDate().toString());
-        mTimeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager manager = getFragmentManager();
-                TimePickerFragment dialog = TimePickerFragment.newInstance(mCrime.getDate());
-                dialog.setTargetFragment(CrimeFragment.this, REQUEST_TIME);
-                dialog.show(manager, DIALOG_TIME);
-            }
-        });
-
         mSolvedCheckBox = (CheckBox) v.findViewById(R.id.crime_solved);
         mSolvedCheckBox.setChecked(mCrime.isSolved());
         mSolvedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -183,11 +168,6 @@ public class CrimeFragment extends Fragment {
                         .setSubject(getString(R.string.crime_report_subject))
                         .setChooserTitle(getString(R.string.send_report))
                         .startChooser();
-//                Intent i = new Intent(Intent.ACTION_SEND);
-//                i.setType("text/plain");
-//                i.putExtra(Intent.EXTRA_TEXT, getCrimeReport());
-//                i.putExtra(Intent.EXTRA_SUBJECT, R.string.crime_report_subject);
-//                startActivity(i);
             }
         });
 
@@ -241,7 +221,6 @@ public class CrimeFragment extends Fragment {
 
     private void updateDateAndTime() {
         mDateButton.setText(mCrime.getDate().toString());
-        mTimeButton.setText(mCrime.getDate().toString());
     }
 
     private void updateCrime() {
